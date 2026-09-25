@@ -19,7 +19,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::584503397704:role/github-actions-beanstalk-deploy
-          aws-region: us-east-1
+          aws-region: eu-north-1
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -38,6 +38,6 @@ jobs:
       - name: Deploy to Elastic Beanstalk
         uses: aws-actions/aws-elasticbeanstalk-deploy@v1
         with:
-          aws-region: us-east-1
+          aws-region: eu-north-1
           application-name: docker-react
           environment-name: docker-react-production
