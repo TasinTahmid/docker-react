@@ -49,9 +49,15 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-react:latest
 
+      - name: Prepare EB deployment package
+        run: |
+          mkdir eb-deploy
+          cp Dockerrun.aws.json eb-deploy/
+
       - name: Deploy to Elastic Beanstalk
         uses: aws-actions/aws-elasticbeanstalk-deploy@v1
         with:
           aws-region: eu-north-1
           application-name: docker-react
           environment-name: docker-react-production
+          source-directory: eb-deploy
